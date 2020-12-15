@@ -1,11 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import Deck from './deckOfCards.js';
 
-export default function App() {
+export default App = () => {
+
+  var deck = new Deck;
+  deck.build();
+  deck.shuffle();
+  console.log(deck);
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Start a new game</Text>
+      <Text>Options</Text>
+      <Text>My Profile</Text>
       <StatusBar style="auto" />
     </View>
   );
