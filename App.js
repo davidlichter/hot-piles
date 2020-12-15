@@ -1,22 +1,51 @@
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 import Deck from './deckOfCards.js';
+import GameOverview from './GameOverview.js';
+import Options from './Options.js';
+import MyProfile from './MyProfile.js'
+import Home from './Home'
 
-export default App = () => {
+const Stack = createStackNavigator();
 
-  var deck = new Deck;
-  deck.build();
-  deck.shuffle();
-  console.log(deck);
-  return (
-    <View style={styles.container}>
-      <Text>Start a new game</Text>
-      <Text>Options</Text>
-      <Text>My Profile</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            style={styles.buttonContainer}
+            name='Home'
+            component={Home}
+            options={{ title: 'Home' }}
+          />
+          <Stack.Screen
+            style={styles.buttonContainer}
+            name='New Game'
+            component={GameOverview}
+            options={{ title: 'Game' }}
+          />
+          <Stack.Screen
+            style={styles.buttonContainer}
+            name='Options'
+            component={Options}
+            options={{ title: 'Options' }}
+          />
+          <Stack.Screen
+            style={styles.buttonContainer}
+            name='My Profile'
+            component={MyProfile}
+            options={{ title: 'My Profile' }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -26,4 +55,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  buttonContainer: {
+    width: 300,
+    height: 100
+  }
 });
+
+/* <FlatList
+data={this.state.currentDeck}
+renderItem={({item}) => <Text>{item.suit}</Text>}>
+</FlatList> */

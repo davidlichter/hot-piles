@@ -13,6 +13,3 @@ A fun, fast paced game of higher or lower! With nine lives, make your way throug
 - Swipe to make selections
 - Score keeping & stats
 - Guessing 'Samesies' will revive a pile
-
-### License
-Card images created by Colin M.L. Burnett
