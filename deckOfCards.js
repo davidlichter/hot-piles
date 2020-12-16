@@ -1,7 +1,8 @@
 class Deck {
   constructor () {
-    this.suits = ['clubs', 'spades', 'hearts', 'diamonds']
+    this.suits = ['Clubs', 'Spades', 'Hearts', 'Diamonds']
     this.values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    this.names = ['Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten','Jack', 'Queen', 'King', 'Ace'];
     this.deckOfCards = [];
   }
 
@@ -10,7 +11,8 @@ class Deck {
       for (var k = 0; k < this.values.length; k++) {
         var card = {
           suit: this.suits[i],
-          value: this.values[k]
+          value: this.values[k],
+          name: `${this.names[k]} of ${this.suits[i]}`
         }
         this.deckOfCards.push(card);
       }

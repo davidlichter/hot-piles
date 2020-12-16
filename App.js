@@ -28,7 +28,7 @@ export default class App extends React.Component {
             style={styles.buttonContainer}
             name='New Game'
             component={GameOverview}
-            options={{ title: 'Game' }}
+            options={{ title: 'Exit Game' }}
           />
           <Stack.Screen
             style={styles.buttonContainer}

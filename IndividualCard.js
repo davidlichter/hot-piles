@@ -5,3 +5,14 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 import Deck from './deckOfCards.js';
 
+const IndividualCard = ({ card, nav, selectCard }) => {
+  return (
+    <Button title={card.name} onPress={() => {
+      selectCard(card)
+    }}></Button>
+  )
+};
+
+
+
+export default IndividualCard;

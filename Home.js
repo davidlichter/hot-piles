@@ -8,7 +8,7 @@ import Deck from './deckOfCards.js';
 const Home = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>Welcome</Text>
+      <Text style={{fontSize: 60}}>Welcome</Text>
       <Button style={styles.buttonContainer}
         title='Start A New Game'
         onPress={() => navigation.navigate('New Game')}
@@ -21,6 +21,7 @@ const Home = ({ navigation }) => {
         title='My Profile'
         onPress={() => navigation.navigate('My Profile')}
       />
+      <Button style={styles.buttonContainer} title='Rules'></Button>
     </View>
   );
 };
