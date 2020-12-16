@@ -14,7 +14,8 @@ class GameOverview extends React.Component {
       gameView: false,
       piles: [],
       selected: false,
-      cardSelected: null
+      cardSelected: null,
+      numberDead: 0
     };
     this.selectCard = this.selectCard.bind(this);
     this.unselectCard = this.unselectCard.bind(this);
@@ -39,49 +40,71 @@ class GameOverview extends React.Component {
   };
 
   selectCard(card) {
-    this.setState({
-      selected: true,
-      cardSelected: card
-    })
+    if (card.name !== 'Dead Pile') {
+      this.setState({
+        selected: true,
+        cardSelected: card
+      })
+    }
   };
 
   selectHigher(card) {
     var deck = this.state.currentDeck.slice(1)
     var flippedCard = this.state.currentDeck[0]
     var piles = this.state.piles.slice()
+    var deadPile = {name: 'Dead Pile'}
+    var numberDead = this.state.numberDead
     if (card.value < flippedCard.value) {
       flippedCard.index = card.index;
       piles.splice(card.index, 1, flippedCard)
       alert(`Correct! The ${flippedCard.name} is higher than the ${card.name}`);
+    } else if (card.value === flippedCard.value) {
+      deadPile.index = card.index;
+      piles.splice(card.index, 1, deadPile)
+      numberDead++
+      alert(`Sorry! The ${flippedCard.name} is equal to the ${card.name}`);
     } else {
-      piles.splice(card.index, 1)
+      deadPile.index = card.index;
+      piles.splice(card.index, 1, deadPile)
+      numberDead++
       alert(`Sorry! The ${flippedCard.name} is lower than the ${card.name}`);
     }
     this.setState({
       currentDeck: deck,
       piles: piles,
       selected: false,
-      cardSelected: null
+      cardSelected: null,
+      numberDead: numberDead
     })
   }
 
   selectLower(card) {
-    var deck = this.state.currentDeck.slice(1)
-    var flippedCard = this.state.currentDeck[0]
-    var piles = this.state.piles.slice()
+    var deck = this.state.currentDeck.slice(1);
+    var flippedCard = this.state.currentDeck[0];
+    var piles = this.state.piles.slice();
+    var deadPile = {name: 'Dead Pile'};
+    var numberDead = this.state.numberDead;
     if (card.value > flippedCard.value) {
       flippedCard.index = card.index;
       piles.splice(card.index, 1, flippedCard)
       alert(`Correct! The ${flippedCard.name} is lower than the ${card.name}`);
+    } else if (card.value === flippedCard.value) {
+      deadPile.index = card.index;
+      piles.splice(card.index, 1, deadPile)
+      numberDead++
+      alert(`Sorry! The ${flippedCard.name} is equal to the ${card.name}`);
     } else {
-      piles.splice(card.index, 1)
+      deadPile.index = card.index;
+      piles.splice(card.index, 1, deadPile)
+      numberDead++
       alert(`Sorry! The ${flippedCard.name} is higher than the ${card.name}`);
     }
     this.setState({
       currentDeck: deck,
       piles: piles,
       selected: false,
-      cardSelected: null
+      cardSelected: null,
+      numberDead: numberDead
     })
   }
 
@@ -114,8 +137,9 @@ class GameOverview extends React.Component {
               }} title='Start'></Button> :
               <View>
                 {this.state.piles.map((individualCard) => {
-                  return <IndividualCard nav={this.props.navigation} selectCard={this.selectCard} key={individualCard.value + individualCard.suit} card={individualCard}></IndividualCard>
+                  return <IndividualCard nav={this.props.navigation} selectCard={this.selectCard} key={individualCard.name} card={individualCard}></IndividualCard>
                 })}
+                <Text style={{fontSize: 30}}>Cards Remaining: {this.state.currentDeck.length}</Text>
               </View>
             }
           </View> :
@@ -134,6 +158,16 @@ class GameOverview extends React.Component {
               title='Lower'></Button>
           </View>
         }
+        <View>
+          {this.state.numberDead === 9 &&
+            <Text style={{fontSize: 50}}>Game Over!</Text>
+          }
+        </View>
+        <View>
+          {this.state.currentDeck.length === 0 &&
+            <Text style={{fontSize: 50}}>Winner!</Text>
+          }
+        </View>
       </View>
     );
   }

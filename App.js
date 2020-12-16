@@ -7,11 +7,13 @@ import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
 import Deck from './deckOfCards.js';
 import GameOverview from './GameOverview.js';
 import Options from './Options.js';
-import MyProfile from './MyProfile.js'
-import Home from './Home'
+import MyProfile from './MyProfile.js';
+import Home from './Home';
+import Rules from './Rules';
+import Login from './Login';
+import Signup from './Signup';
 
 const Stack = createStackNavigator();
-
 
 export default class App extends React.Component {
   render() {
@@ -34,13 +36,31 @@ export default class App extends React.Component {
             style={styles.buttonContainer}
             name='Options'
             component={Options}
-            options={{ title: 'Options' }}
+            options={{ title: 'Return home' }}
+          />
+          <Stack.Screen
+            style={styles.buttonContainer}
+            name='Login'
+            component={Login}
+            options={{ title: 'Return home' }}
+          />
+          <Stack.Screen
+            style={styles.buttonContainer}
+            name='Signup'
+            component={Signup}
+            options={{ title: 'Return home' }}
           />
           <Stack.Screen
             style={styles.buttonContainer}
             name='My Profile'
             component={MyProfile}
-            options={{ title: 'My Profile' }}
+            options={{ title: 'Return home' }}
+          />
+          <Stack.Screen
+            style={styles.buttonContainer}
+            name='Rules'
+            component={Rules}
+            options={{ title: 'Return home' }}
           />
         </Stack.Navigator>
       </NavigationContainer>

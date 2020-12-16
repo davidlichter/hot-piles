@@ -12,7 +12,7 @@ class Deck {
         var card = {
           suit: this.suits[i],
           value: this.values[k],
-          name: `${this.names[k]} of ${this.suits[i]}`
+          name: `${this.names[k]} of ${this.suits[i]}`,
         }
         this.deckOfCards.push(card);
       }
